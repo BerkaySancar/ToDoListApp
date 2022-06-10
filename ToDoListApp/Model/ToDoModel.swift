@@ -22,7 +22,7 @@ struct ToDoModel: Codable {
     }
     
     func updateCompletion() -> ToDoModel { // check button da kullan
-        return ToDoModel(title: title, date: date, description: description, isCompleted: !isCompleted)
+        return ToDoModel(title: title, date: date, description: description, isCompleted: false)
     }
     
 }

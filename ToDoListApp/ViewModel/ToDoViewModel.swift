@@ -38,7 +38,6 @@ class ToDoViewModel {
             items[index] = item.updateCompletion()
         }
     }
-    
     func saveToDo() {
         if let encodedData = try? JSONEncoder().encode(items) {
             UserDefaults.standard.set(encodedData, forKey: "ToDoList")

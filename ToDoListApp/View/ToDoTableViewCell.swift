@@ -51,16 +51,19 @@ class ToDoTableViewCell: UITableViewCell {
         }
         toDoCheckButton.snp.makeConstraints { make in
             make.top.equalTo(toDoTitle.snp.bottom)
-            make.right.equalToSuperview().offset(-20)
-            make.width.height.equalTo(42)
+            make.right.equalToSuperview().offset(-30)
+            make.width.height.equalTo(30)
         }
         drawDesign()
     }
     
     private func drawDesign() {
-        toDoTitle.font = .boldSystemFont(ofSize: 25)
-        toDoDescription.font = .systemFont(ofSize: 15)
-        toDoDate.font = .systemFont(ofSize: 20)
+        toDoTitle.font = .boldSystemFont(ofSize: 20)
+        toDoDescription.font = .systemFont(ofSize: 10)
+        toDoDate.font = .systemFont(ofSize: 15)
+        
+       
+        
     }
     
     func showModel(model: ToDoModel) {

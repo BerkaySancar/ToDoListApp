@@ -10,12 +10,16 @@ import UIKit
 final class ToDoViewController: UIViewController {
     
     let tableView: UITableView = UITableView()
-    let viewModel = ToDoViewModel()
+    let viewModel: ToDoViewModel = ToDoViewModel()
+    var selectedTitle: String = ""
+    var selectedDate: String = ""
+    var selectedDescription: String = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,10 +88,12 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let selectedToDo = viewModel.items[indexPath.row]
+        selectedTitle = viewModel.items[indexPath.row].title
+        selectedDate = viewModel.items[indexPath.row].date
+        selectedDescription = viewModel.items[indexPath.row].description
         
+        self.navigationController?.pushViewController(DetailsViewController(title: selectedTitle, date: selectedDate, description: selectedDescription), animated: true)
         
     }
-    
 }
 
