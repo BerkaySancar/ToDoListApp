@@ -7,13 +7,13 @@
 
 import UIKit
 
-final class AddToDoViewController: UIViewController {
+final class AddViewController: UIViewController {
     
-    var viewModel: ToDoViewModel = ToDoViewModel()
-    let titleTextField: UITextField = UITextField()
-    let dateTextField: UITextField = UITextField()
-    let descriptionTextField: UITextField = UITextField()
-    let saveButton: UIButton = UIButton(type: .system)
+    private let viewModel: ToDoViewModel = ToDoViewModel()
+    private let titleTextField: UITextField = UITextField()
+    private let dateTextField: UITextField = UITextField()
+    private let descriptionTextField: UITextField = UITextField()
+    private let saveButton: UIButton = UIButton(type: .system)
     private let datePicker = UIDatePicker()
     private let toolbar = UIToolbar()
     private let formatter = DateFormatter()
@@ -51,41 +51,44 @@ final class AddToDoViewController: UIViewController {
             make.width.equalTo(100)
             make.centerX.equalTo(view.center.x)
         }
-       drawDesign()
+       design()
     }
     
-    private func drawDesign() {
+    private func design() {
         navigationItem.title = "Create To-Do"
         view.backgroundColor = .white
 
         titleTextField.placeholder = "Title:"
         titleTextField.font = UIFont.systemFont(ofSize: 20)
         titleTextField.borderStyle = .line
-        titleTextField.layer.borderWidth = 2.0
-        titleTextField.layer.borderColor = UIColor.systemOrange.cgColor
+        titleTextField.layer.borderWidth = 1
+        titleTextField.layer.borderColor = UIColor.systemGreen.cgColor
         titleTextField.layer.cornerRadius = 7
         titleTextField.layer.masksToBounds = true
+        titleTextField.setLeftPaddingPoints(5)
         
         createDatePicker()
         dateTextField.placeholder = "Date:"
         dateTextField.font = UIFont.systemFont(ofSize: 20)
         dateTextField.borderStyle = .line
-        dateTextField.layer.borderWidth = 2.0
-        dateTextField.layer.borderColor = UIColor.systemOrange.cgColor
+        dateTextField.layer.borderWidth = 1
+        dateTextField.layer.borderColor = UIColor.systemGreen.cgColor
         dateTextField.layer.cornerRadius = 7
         dateTextField.layer.masksToBounds = true
+        dateTextField.setLeftPaddingPoints(5)
         
         descriptionTextField.placeholder = "Description:"
         descriptionTextField.font = UIFont.systemFont(ofSize: 20)
         descriptionTextField.borderStyle = .line
-        descriptionTextField.layer.borderWidth = 2.0
-        descriptionTextField.layer.borderColor = UIColor.systemOrange.cgColor
+        descriptionTextField.layer.borderWidth = 1
+        descriptionTextField.layer.borderColor = UIColor.systemGreen.cgColor
         descriptionTextField.layer.cornerRadius = 7
         descriptionTextField.layer.masksToBounds = true
+        descriptionTextField.setLeftPaddingPoints(5)
         
         saveButton.setTitle("Save", for: UIControl.State.normal)
         saveButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
-        saveButton.backgroundColor = .systemOrange
+        saveButton.backgroundColor = .systemGreen
         saveButton.titleLabel?.font = .systemFont(ofSize: 20)
         saveButton.layer.cornerRadius = 20
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: UIControl.Event.touchUpInside)
@@ -102,14 +105,14 @@ final class AddToDoViewController: UIViewController {
         
         dateTextField.inputAccessoryView = toolbar
         dateTextField.inputView = datePicker
-        datePicker.datePickerMode = .date
+        datePicker.datePickerMode = .dateAndTime
         datePicker.preferredDatePickerStyle = .inline
         datePicker.backgroundColor = .white
     }
     
     @objc private func doneTapped() {
         formatter.dateStyle = .full
-        formatter.timeStyle = .none
+        formatter.timeStyle = .short
         
         dateTextField.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)

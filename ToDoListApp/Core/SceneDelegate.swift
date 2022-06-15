@@ -21,9 +21,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        window?.rootViewController = toDoVc
         guard let _ = (scene as? UIWindowScene) else { return }
         
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene = windowScene
         let controller = ToDoViewController()
         let navController = UINavigationController(rootViewController: controller)
         window?.rootViewController = navController
+        window?.makeKeyAndVisible()
         
     }
 

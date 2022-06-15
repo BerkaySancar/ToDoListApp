@@ -9,30 +9,31 @@ import UIKit
 
 class ToDoTableViewCell: UITableViewCell {
     
-    private let toDoTitle: UILabel = UILabel()
-    private let toDoDescription: UILabel = UILabel()
-    private let toDoDate: UILabel = UILabel()
-    private let toDoCheckButton: UIButton = UIButton(type: .system)
-    
+    private let viewModel: ToDoViewModel = ToDoViewModel()
+    let toDoTitle: UILabel = UILabel()
+    let toDoDescription: UILabel = UILabel()
+    let toDoDate: UILabel = UILabel()
+    let toDoCheckButton: UIButton = UIButton(type: .system)
+
     enum Identifier: String {
         case custom = "ToDoCell"
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         configure()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func configure() {
-        
-        addSubview(toDoTitle)
-        addSubview(toDoDescription)
-        addSubview(toDoDate)
-        addSubview(toDoCheckButton)
+        contentView.addSubview(toDoTitle)
+        contentView.addSubview(toDoDescription)
+        contentView.addSubview(toDoDate)
+        contentView.addSubview(toDoCheckButton)
         
         toDoTitle.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
@@ -54,27 +55,16 @@ class ToDoTableViewCell: UITableViewCell {
             make.right.equalToSuperview().offset(-30)
             make.width.height.equalTo(30)
         }
-        drawDesign()
+        design()
     }
     
-    private func drawDesign() {
-        toDoTitle.font = .boldSystemFont(ofSize: 20)
-        toDoDescription.font = .systemFont(ofSize: 10)
+    private func design() {
+        toDoTitle.font = .boldSystemFont(ofSize: 25)
+        toDoDescription.font = .systemFont(ofSize: 15)
         toDoDate.font = .systemFont(ofSize: 15)
         
-       
-        
     }
     
-    func showModel(model: ToDoModel) {
-        toDoTitle.text = model.title
-        toDoDate.text = model.date
-        toDoDescription.text = model.description
-        
-        if model.isCompleted {
-            toDoCheckButton.setBackgroundImage(UIImage(named: "completed"), for: UIControl.State.normal)
-        } else {
-            toDoCheckButton.setBackgroundImage(UIImage(named: "emptyBox"), for: UIControl.State.normal)
-        }
-    }
+ 
+
 }

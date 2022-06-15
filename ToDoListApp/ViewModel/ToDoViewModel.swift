@@ -30,18 +30,17 @@ class ToDoViewModel {
     func addToDo(title: String, date: String, description: String) {
         let newToDo = ToDoModel(title: title, date: date, description: description, isCompleted: false)
         items.append(newToDo)
-    
     }
-    // incele detailsVC de kullanabilirsin...
+    
     func updateToDo(item: ToDoModel) {
         if let index = items.firstIndex(where: {$0.title == item.title}) {
             items[index] = item.updateCompletion()
         }
     }
+    
     func saveToDo() {
         if let encodedData = try? JSONEncoder().encode(items) {
             UserDefaults.standard.set(encodedData, forKey: "ToDoList")
         }
     }
-    
 }
